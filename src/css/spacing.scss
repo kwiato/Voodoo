@@ -1,0 +1,115 @@
+
+@mixin padding {
+    padding: $gutter-sm;
+
+    @media (min-width: $screen-sm) {
+        padding: $gutter;
+    }   
+}
+
+@mixin padding-sm {
+    padding: $gutter-sm;
+        
+    @media (min-width: $screen-sm) {
+        padding: $gutter-sm;
+    }
+}
+
+@mixin padding-lg {
+    padding: $gutter;
+    @media (min-width: $screen-sm) {
+        padding: $gutter-lg;
+    }
+}
+
+
+$directions: (
+    'top',
+    'right',
+    'bottom',
+    'left'
+);
+
+.nomargin {
+    margin: 0 !important;
+}
+
+.margin {
+    margin: $gutter/$gutter-ratio;
+    
+    @each $name, $value in $gutters {
+        &.margin-#{$name} {
+            margin: $value/$gutter-ratio;
+        }
+    }
+
+    @media (min-width: $screen-sm) {
+        margin: $gutter;
+        @each $name, $value in $gutters {
+            &.margin-#{$name} {
+                margin: $value;
+            }
+        }
+    }
+}
+
+.padding {
+    padding: $gutter/$gutter-ratio;
+
+    @each $name, $value in $gutters {
+        &.padding-#{$name} {
+            padding: $value/$gutter-ratio;
+        }
+    }
+
+    @media (min-width: $screen-sm) {
+        padding: $gutter;
+
+        @each $name, $value in $gutters {
+            &.padding-#{$name} {
+                padding: $value;
+            }
+        }
+    }
+}
+
+@each $direction in $directions {
+    .margin-#{$direction} {
+        margin-#{$direction}: $gutter/$gutter-ratio;
+
+        @media (min-width: $screen-sm) {
+            margin-#{$direction}: $gutter;
+        }
+    }
+
+    @each $name, $value in $gutters {
+        &.margin-#{$direction}-#{$name} {
+
+            margin-#{$direction}: $value/$gutter-ratio;
+
+            @media (min-width: $screen-sm) {
+                margin-#{$direction}: $value;
+            }
+        }
+    }
+}
+
+@each $direction in $directions {
+    .padding-#{$direction} {
+        padding-#{$direction}: $gutter/$gutter-ratio;
+
+        @media (min-width: $screen-sm) {
+            padding-#{$direction}: $gutter;
+        }
+    }
+
+    @each $name, $value in $gutters {
+        &.padding-#{$direction}-#{$name} {
+            padding-#{$direction}: $value/$gutter-ratio;
+
+            @media (min-width: $screen-sm) {
+                padding-#{$direction}: $value;
+            }
+        }
+    }
+}
